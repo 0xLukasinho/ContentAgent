@@ -1,0 +1,114 @@
+$REI is my biggest conviction play in the AI Agents space. 
+
+@unit00x0 is not only the agent providing the best market analysis, @ReiNetwork0x is also building the maybe most advanced framework.
+
+🧵Here is what make $REI so damn good 👇
+
+-----
+
+The framework's first implementation is @Rei_00. She delivers sophisticated crypto market analysis by combining on-chain data, price movements, and social sentiment into custom charts.
+
+Here analysis is truly impressive. See an example here:
+
+https://x.com/unit00x0/status/1874187500643643648
+
+-----
+
+What makes Rei_00 unique? Unlike other AI agents, she builds understanding over time by storing her experiences directly on blockchain. Every analysis, pattern, and decision becomes part of her growing knowledge base.
+
+-----
+
+Now, here's where it gets interesting. Creating AI agents that learn on blockchain requires solving a fundamental conflict...
+
+-----
+
+AI systems - given the same input might produce different outputs each time as they learn and adapt. But blockchain systems need exact consistency.
+
+It's like trying to record an artist's creative process in a ledger that only accepts mathematical formulas.
+
+-----
+
+$REI solves this conflict through a sophisticated bridge between these two worlds - letting AI systems think and learn freely while transforming their insights into precise, verifiable blockchain actions that can be recorded consistently.
+
+-----
+
+1️⃣The Thinking Layer: Processes raw data (transactions, market data, user interactions) and identifies basic patterns, like our eyes spotting shapes before understanding what we're looking at.
+
+-----
+
+2️⃣The Reasoning Layer: Adds context to these patterns. If it spots increasing transaction volumes, it connects this with time of day, historical trends, and market conditions.
+
+-----
+
+3️⃣The Decision Layer: Takes this contextual understanding and determines actions. For example, deciding how to respond to an identified market trend.
+
+-----
+
+4️⃣The Acting Layer: Converts decisions into specific blockchain actions. This is where REI shines - ensuring all actions are completely deterministic and verifiable.
+
+-----
+
+These four layers don't work alone. They need three additional components to function properly on a blockchain:
+
+-----
+
+Before we dive into the three components: This thread is based on an article I wrote on my substack. If you want to read the full deep dive, and subscribe to receive future articles directly in your inbox, you can do so here: https://lukasinho.substack.com/p/rei-building-intelligent-agents-that
+
+-----
+
+First, the Oracle Bridge: Acts as a gateway between AI and blockchain. It converts varying AI outputs into consistent, verifiable results. Think of it translating a 75.4% probability into specific trading parameters.
+
+-----
+
+Second, the ERCData standard: Imagine traditional blockchain storage as a simple spreadsheet. ERCData expands this to store complex relationships while keeping everything verifiable.
+
+-----
+
+Third, the Memory Systems: This is where the magic happens. They store experiences in a structured way that future operations can learn from, creating a continuously evolving knowledge base.
+
+-----
+
+While @unit00x0 focuses on trading, the Framework opens up possibilities far beyond.
+👉Healthcare agents analyzing patient data while maintaining privacy
+👉 Supply chain systems learning from logistics patterns
+👉Content creators understanding user preferences.
+👉And much more
+
+-----
+
+So what's next for $REI?
+
+@unit00x0 is just the beginning - a showcase of what this framework can achieve.
+
+Once the framework is rolled out we can expect many more agents with her advanced capabilities to be deployed.
+
+-----
+
+The $REI token will be crucial in this ecosystem expansion. We don't know many details yet, but we do know that it will be required to get access to the API & SDK.
+
+Developers will need to use $REI to develop agents with this framework.
+
+-----
+
+Long-term success hinges on two factors: 
+👉@unit00x0's performance in autonomous trading to gain mindshare
+👉Attracting developers to build innovative agents with the framework.
+
+-----
+
+@virtuals_io has a MCAP of 4B
+@aixbt_agent has a MCAP of 500M
+
+@ReiNetwork0x has a MCAP of just 140M, despite $REI potentially being a single token uniting the capabilities of both Virtuals and AIXBT!
+
+-----
+
+$REI is launching into a competitive market. Virtuals and AI16z currently maintain their early advantages and other ambitious frameworks emerge.
+
+But the combination of @unit00x0 capabilities and the framework's potential positions REI to compete effectively.
+
+-----
+
+That's a wrap, if you enjoyed this read, please make sure to share the thread to let your friends know and subscribe to my substack:
+https://lukasinho.substack.com/p/rei-building-intelligent-agents-that
+

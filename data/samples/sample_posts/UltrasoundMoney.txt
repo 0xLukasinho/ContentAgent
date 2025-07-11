@@ -1,0 +1,47 @@
+$ETH ultrasound narrative is dead!
+
+Or is it?
+
+As EF scales the L1 and $ETH pumps, the ultrasound narrative is coming back. What a surprise :)
+
+I'm not the first to write about it, but the market is yet to internalize the message.
+
+The logic goes like this:
+
+Gas limit (now ~36M) could hit 150M, boosting L1 scalability. Critics would say "oh that's bad, because lower fees burn less $ETH. Buy my alt-L1!"
+
+That's the old thinking.
+
+True that more txs per block = lower fees, but more activity could mean more ETH burned.
+
+Higher gas limit → more txs outweigh lower fees → potentially more burn.
+
+As @hanni_abu calculates, "at 36M and the deflationary threshold it 14.5 gwei.
+
+At a 300M gas limit the deflationary threshold becomes 1.74 gwei (14.5gwei*36M/300M)."
+
+He also adds that as gas prices drop, users are more willing to pay higher fees during congestion:
+
+E.g., at $0.01, a 100% premium to $0.02 feels more acceptable than jumping from $5 to $10.
+
+Lower prices make people less sensitive to congestion fees.
+
+Sounds freaking amazing but here's a big question: Will users flock back to the L1?
+
+Active addresses haven't grown on Ethereum for years.
+
+Bad UX (approve+swap), slow and expensive txs are the main reasons but issues are being addressed (Pectra!)
+
+So for ultrasound narrative to come back we need to see users and activity coming back to the L1.
+
+It's a big pivot from pushing users out of the L1 to L2s.
+
+Tbh, I do want users to come back, but it does put pressure on non-specialized L2s.
+
+In any case, the following months and years are crucial for ETH: will users come back to the L1 and devs build new use cases on mainnet?
+
+And if yes, will increase activity burn more ETH despite lower fees?
+
+For the sake of my bags, I hope so!
+
+As always, let me know what I might be missing here.

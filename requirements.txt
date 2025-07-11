@@ -1,0 +1,17 @@
+# ContentAgent Dependencies
+
+# Core requirements
+langchain-core>=0.1.6
+langchain-community>=0.0.10
+langchain-openai>=0.1.6
+openai>=1.14.3
+python-dotenv>=1.0.0
+colorama>=0.4.6
+
+# Document processing
+docx2txt>=0.8
+markdown>=3.5.1
+
+# Text analysis and summarization
+nltk>=3.8.1
+spacy>=3.7.2

@@ -1,0 +1,54 @@
+Unpopular take: Ethereum's last resort narrative is "pivot" to a Bitcoin L2.
+
+Bitcoin owns the 'store of value' narrative, but $ETH remains a more productive asset in terms of native staking yield and as the most liquid collateral in DeFi.
+
+But the landscape is changing.
+
+BTCfi is quietly yet rapidly expanding, with @babylonlabs_io's BTC restaking protocol climbing to 6th place by TVL ($4.9B), overtaking Uniswap's TVL.
+
+
+As a result, BTC is becoming a more productive asset in DeFi.
+
+On Aave, BTC wrappers contribute ~$6B+ of supply, compared to $10B+ for ETH derivatives.
+
+
+I believe that the trend will continue and BTC wrappers will overtake ETH assets in DeFi. Especially if BTC continues to outperform ETH.
+
+With just 12% of the total BTC supply in DeFi, BTC would surpass the entire market cap of $ETH.
+
+Most Bitcoin DeFi protocols are relatively new and untested. However, they grow stronger each day as the Lindy effect builds.
+
+Still, hardcore Bitcoin bulls and maxis are unwilling to use their passive BTC holdings productively due to centralization, hack and bug risks.
+
+And rightfully so. 
+
+Recent changes in wBTC ownership was a big shock, leading to the growth of another centralized BTC wrapper by Coinbase.
+
+Not good. I still hold most of my BTC on Bitcoin.
+
+Yet EF's recently emphasized values of "censorship resistance, open source innovation, privacy, and security" perfectly align with Bitcoin and BTC holders.
+
+Truth to be told, that even BTC maxis would prefer holding BTC on Ethereum vs any other alt-L1 due to Ethereum's decentralization and security if yield opportunities are good enough.
+
+Examples of BTC whales preferring BTC ETFs over self-storage prove that maximalism has limits.
+
+Thus I believe Ethereum could take a lesson from @Stacks recent launch of 'trust minimized' sBTC and build the best and most decentralized bridge and wrapper for BTC on Ethereum.
+
+(Note that since the infographic above was created, BTC MC grew to $1.9T while ETH's dropped to just $221B!!!)
+
+I understand this might be unpopular, but Ethereum's top security and censorship resistance are less important for most DeFi natives. 
+
+Even if RWAs and tokenization picks up massively, it might not save $ETH.
+
+As @samkazemian explains, ETH settlement guarantees are useful mostly for assets without issuers. 
+
+For those with issuers, like RWAs, settlement depends on the issuer meeting liabilities on all chains. $BUIDL on ETH is part of Blackrock's liabilities.
+
+
+However, Ethereum's top security and decentralization are crucial for long-term BTC holders looking to do more with their Bitcoin.
+
+And no matter how much EF scales the L1, the L1 will never be faster than Solana or Sui.
+
+Overall, I see a continuous growth of BTC wrappers on Ethereum but those solutions are sub-optimal and have many risks.
+
+Ethereum could acknowledge this and build infra for $BTC to become the most productive asset this way aligning the top 2 crypto communities in the process.

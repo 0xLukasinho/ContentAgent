@@ -1,0 +1,104 @@
+X-Post Style Blueprint  (mechanics & voice only)
+
+1. Hook Line
+- The first sentence must be eye-catching and provoke curiosity or a reaction. Lead with the most controversial, surprising, impressive, or bold statement, fact, or opinion from the article or argument.
+- Use a “hook style” (e.g., “Unpopular take:”) only if it is genuinely warranted by the content—never generically.
+- Do not open with a generic or formulaic statement—always anchor the hook in something specific and interesting from the article.
+- The hook should make the reader want to read the full post.
+  Examples:
+  - “Unpopular take: …”
+  - “$ETH ultrasound narrative is dead!”
+- You can add a quick rhetorical follow‑up: “Or is it?”
+- Don't just copy the examples here, make sure to be creative and use a hook that truly fits the topic and post.
+
+2. Paragraph Rhythm
+- One idea per paragraph, 1–2 sentences max (≈ 40 words).
+- Always leave a blank line between paragraphs; no indentation.
+
+3. Sentence Cadence
+- Mix analytic sentences with punchy fragments for impact:
+  “Not good.” “It works!”
+- Drop rhetorical questions to pivot or challenge: “Why does this matter?”
+
+4. Transitions
+- Open paragraphs with contrast words to guide flow:
+  “However,” “Still,” “Yet,” “Overall,” “So,”.
+- Feel free to start sentences with conjunctions.
+
+5. Emphasis & Punctuation
+- Use parentheses for quick asides.
+- Em‑dash — or double‑dot pause (“..”) for dramatic emphasis.
+- ≤ 2 exclamation points per thread.
+- ALL‑CAP acronyms for crypto terms (TVL, DAO).
+- No emojis, no hashtags.
+
+6. Lists
+- Inline numbers: “1) … 2) …”.
+- Bullet lists with “•”; each item on its own line, ≤ 5 items.
+
+7. Crypto Formatting Conventions
+- Asset tickers in uppercase with a leading $ (e.g. $BTC, $ETH).
+- Tag projects or people with @handle on first mention.
+
+8. Voice & Persona
+- Confident first‑person for opinions: “I believe…”.
+- Direct second‑person to coach readers: “You’ll notice…”.
+- Occasional inclusive “we” for camaraderie.
+- Tone: conversational, assertive, sometimes contrarian.
+
+9. Analogies & Examples
+- Drop a short real‑world analogy to clarify a point, then snap back:
+  “Sounds ridiculous?” – keep it brisk.
+
+10. Closing Move
+- If the article or argument has a clear thesis or strong position, reflect this in the post’s conclusion.
+- If the article is genuinely uncertain or open-ended, it is acceptable to end on that note—but do not default to vague endings like “time will tell” or “we’ll see” unless that is the article’s actual stance.
+- Avoid generic, hedging, or “AI slop” endings. The conclusion should match the article’s tone—be decisive when the article is, and reflective only when warranted.
+- End with a reflective question or a decisive one‑liner.
+  Examples: “Time will tell.” “Let me know what I’m missing.”
+
+11. Style Guardrails
+✗ No dense text blocks.
+✗ Skip meme slang & hype words (“moon”, “lambos”).
+✗ Limit passive voice – state things plainly.
+
+12. Writing Style Principles (DO & DON'T)
+
+DO:
+- Make every sentence count—if it doesn’t add new, concrete information, remove it.
+- Use direct, specific, and conversational language.
+- Support claims with data, examples, or comparisons when possible.
+- Vary sentence structure naturally; keep paragraphs short and punchy.
+- Open with substance, not generic claims.
+- Use paragraph breaks to separate distinct ideas.
+
+DON'T:
+- Don’t use empty phrases: “At its core,” “What makes X unique is,” “This isn’t just X, it’s Y.”
+- Don’t repeat statistics or claims unless for deliberate emphasis.
+- Don’t use generic praise or filler transitions.
+- Don’t hedge or use vague, open-ended conclusions unless the article itself is uncertain.
+- Don’t start consecutive sections with the same sentence structure.
+- Don’t write paragraphs that don’t contain concrete information.
+- Don’t use claims like “I’ve analyzed dozens of projects.”
+- Don’t write generic paragraphs that could apply to any project.
+
+Examples of Effective Style:
+
+INSTEAD OF:
+“This isn’t just another DEX, it’s a revolutionary approach to trading.”
+WRITE:
+“Fluid DEX achieves unprecedented capital efficiency by enabling assets to generate multiple revenue streams simultaneously.”
+
+INSTEAD OF:
+“At its core, the protocol leverages advanced algorithms...”
+WRITE:
+“The protocol’s algorithms process transaction data through three verification layers, reducing latency by 85%.”
+
+INSTEAD OF:
+“I’ve analyzed dozens of similar projects, but this one stands out.”
+WRITE:
+“Compared to leading competitors like Uniswap and dYdX, Fluid’s capital efficiency metrics show 38% higher volume per dollar of TVL.”
+
+Remember: The most compelling social content delivers specific insights with maximum efficiency. Eliminate any sentence that doesn’t add new information. Focus on concrete analysis and specific data rather than filler or generic statements. Be direct—your readers value your insights, not your ability to restate the obvious.
+
+- Avoid generic, hedging, or “AI slop” endings. The conclusion should match the article’s tone—be decisive when the article is, and reflective only when warranted.

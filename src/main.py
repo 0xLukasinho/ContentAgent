@@ -4,6 +4,7 @@ Integrates all components and provides the main entry point.
 """
 import os
 import datetime
+import re
 from typing import Dict, Any, Tuple
 
 from src.document_loader import DocumentProcessor
@@ -46,6 +47,42 @@ class ContentAgent:
         
         print("ContentAgent initialized.")
     
+    def _create_topic_based_folder_name(self, article_title: str) -> str:
+        """
+        Create a safe, topic-based folder name from the article title.
+        
+        Args:
+            article_title: The title of the article
+            
+        Returns:
+            Safe folder name based on the topic
+        """
+        # Clean the title: remove special characters, convert to lowercase
+        safe_title = re.sub(r'[^\w\s-]', '', article_title.lower())
+        # Replace spaces with underscores and remove extra whitespace
+        safe_title = re.sub(r'\s+', '_', safe_title.strip())
+        # Remove any double underscores
+        safe_title = re.sub(r'_+', '_', safe_title)
+        # Limit length to avoid filesystem issues
+        safe_title = safe_title[:50]
+        # Remove trailing underscores
+        safe_title = safe_title.rstrip('_')
+        
+        # If the title is empty after cleaning, use a default
+        if not safe_title:
+            safe_title = "content_generation"
+        
+        # Check if folder already exists, if so add a counter
+        base_folder_name = safe_title
+        counter = 1
+        final_folder_name = base_folder_name
+        
+        while os.path.exists(os.path.join(OUTPUT_DIR, final_folder_name)):
+            counter += 1
+            final_folder_name = f"{base_folder_name}_{counter}"
+        
+        return final_folder_name
+    
     def run(self):
         """
         Run the ContentAgent workflow.
@@ -65,11 +102,12 @@ class ContentAgent:
         article_content = doc_result["content"]
         article_title = doc_result["title"]
         
-        # Create output directory
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_dir = os.path.join(OUTPUT_DIR, timestamp)
+        # Create output directory with topic-based name
+        topic_folder_name = self._create_topic_based_folder_name(article_title)
+        output_dir = os.path.join(OUTPUT_DIR, topic_folder_name)
         os.makedirs(output_dir, exist_ok=True)
         print(f"Output will be saved to: {output_dir}")
+        print(f"{Fore.CYAN}Topic-based folder: {topic_folder_name}{Style.RESET_ALL}")
         
         # Store all generated content for image prompts
         generated_content = {}
@@ -220,7 +258,6 @@ class ContentAgent:
                         with open(post_path, "r", encoding="utf-8") as f:
                             edited_content = f.read()
                         # Extract just the post content (remove title and argument)
-                        import re
                         match = re.search(r'\*\*.*?\*\*\s*\n\n(.*)', edited_content, re.DOTALL)
                         if match:
                             edited_post = match.group(1).strip()

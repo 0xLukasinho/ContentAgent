@@ -32,11 +32,7 @@ if os.path.exists(env_path):
         except Exception:
             print("Warning: Could not parse .env file")
 
-# Use the provided API key as a fallback
-if "OPENAI_API_KEY" not in os.environ:
-    # This is the key provided by the user in the instructions
-    api_key = "sk-openai03-JciJ7WFI5sQCsLrM-yERfXZSv2qdXCy35ok9fj8SfbtJsu0YxLR8DdqC675-4mCkanab7y04GrRi-yr18tAeUQ-CjGxfQAA"
-    os.environ["OPENAI_API_KEY"] = api_key
+# No fallback - API keys must be provided via environment variables
 
 # Get the API key from environment
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")

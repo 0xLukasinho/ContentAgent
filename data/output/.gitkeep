@@ -1,0 +1,2 @@
+# This file ensures the output directory structure is preserved in git
+# All content in this directory should be ignored by .gitignore 

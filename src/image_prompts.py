@@ -12,7 +12,7 @@ from typing import Dict, List, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 
-from src.config import OPENAI_MODEL, OUTPUT_DIR, get_api_key
+from src.config import OPENAI_MODEL, OUTPUT_DIR, SAMPLES_DIR, get_api_key
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +27,9 @@ class ImagePromptGenerator:
             temperature=0.7
         )
         
+        # Load image style instructions
+        self.style_instructions = self._load_style_instructions()
+        
         self.image_prompt_template = ChatPromptTemplate.from_template("""
         You are an expert at creating detailed, effective prompts for AI image generation tools like DALL-E and Midjourney.
         
@@ -38,12 +41,19 @@ class ImagePromptGenerator:
         4. Be optimized for AI image generators (clear descriptions, not relying on text within images)
         5. Avoid prohibited content (violence, adult content, etc.)
         6. Be 50-100 words in length
+        7. IMPORTANT: Incorporate the provided style guidelines throughout the entire prompt
+        
+        STYLE GUIDELINES TO FOLLOW:
+        {style_instructions}
+        
+        Make sure every aspect of the image prompt (colors, composition, mood, artistic style, etc.) 
+        follows these style guidelines while still being relevant to the content.
         
         Provide your response in this format:
         
         ## Image Title
         
-        [The detailed prompt text]
+        [The detailed prompt text incorporating the style guidelines]
         
         ## Connection to Content
         [1-2 sentences explaining how this visual connects to the content]
@@ -59,6 +69,27 @@ class ImagePromptGenerator:
         """)
         
         self.image_prompt_chain = self.image_prompt_template | self.model
+    
+    def _load_style_instructions(self) -> str:
+        """
+        Load image style instructions from the samples directory.
+        
+        Returns:
+            String containing the style instructions, or default instructions if file not found
+        """
+        style_file_path = os.path.join(SAMPLES_DIR, "image_style_instructions.txt")
+        
+        try:
+            with open(style_file_path, "r", encoding="utf-8") as f:
+                instructions = f.read().strip()
+            logger.info(f"Loaded image style instructions from {style_file_path}")
+            return instructions
+        except FileNotFoundError:
+            logger.warning(f"Image style instructions file not found at {style_file_path}. Using default style.")
+            return "Use a modern, professional style with clean composition and appropriate colors for business/tech content."
+        except Exception as e:
+            logger.error(f"Error loading image style instructions: {e}")
+            return "Use a modern, professional style with clean composition and appropriate colors for business/tech content."
     
     def generate_image_prompt(self, content: str, content_type: str, content_title: str) -> str:
         """
@@ -81,7 +112,8 @@ class ImagePromptGenerator:
             result = self.image_prompt_chain.invoke({
                 "content": content_excerpt,
                 "content_type": content_type,
-                "content_title": content_title
+                "content_title": content_title,
+                "style_instructions": self.style_instructions
             })
             return result.content
         except Exception as e:

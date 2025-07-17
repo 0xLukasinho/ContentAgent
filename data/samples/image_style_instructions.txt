@@ -1,0 +1,37 @@
+Image Style Guidelines for ContentAgent
+
+This file defines the visual style and aesthetic preferences for all AI-generated image prompts.
+The ContentAgent will automatically incorporate these style elements into every image prompt it creates.
+
+STYLE PREFERENCES:
+- Art Style: Modern, clean, professional illustrations with a touch of tech/digital aesthetic
+- Color Palette: Primarily blues, whites, and subtle accent colors (avoid overly bright or neon colors)
+- Composition: Well-balanced, not cluttered, with clear focal points
+- Mood: Professional yet approachable, innovative, trustworthy
+
+TECHNICAL SPECIFICATIONS:
+- Image Quality: High-resolution, crisp, detailed
+- Lighting: Soft, natural lighting with good contrast
+- Perspective: Varied - can include aerial views, close-ups, or wide shots as appropriate
+- Background: Clean, not distracting from the main subject
+
+CONTENT GUIDELINES:
+- Include relevant technology elements when appropriate (subtle, not overwhelming)
+- Avoid overly complex scenes - keep visuals clear and focused
+- Use visual metaphors that enhance understanding of the content
+- Ensure images are suitable for professional/business contexts
+
+AVOID:
+- Overly cartoonish or childish styles
+- Dark, gritty, or dystopian aesthetics
+- Cluttered compositions with too many elements
+- Text overlays or typography within the image
+- Generic stock photo aesthetics
+
+SPECIFIC STYLE NOTES:
+- When depicting people: Diverse, professional, engaged
+- When depicting technology: Modern, sleek, user-friendly interfaces
+- When depicting concepts: Use clear visual metaphors and symbols
+- When depicting data/analytics: Clean charts, graphs, and visualizations
+
+Remember: These style guidelines should enhance the content's message while maintaining visual consistency across all generated images.

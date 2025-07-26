@@ -11,6 +11,7 @@ from src.document_loader import DocumentProcessor
 from src.twitter_generator import TwitterThreadGenerator
 from src.cli_interface import CLIInterface
 from src.config import INPUT_DIR, OUTPUT_DIR
+from src.memory_manager import MemoryManager
 
 # Import Stage 2 modules
 from src.article_summary import ArticleSummaryGenerator
@@ -32,10 +33,14 @@ class ContentAgent:
         Initialize the ContentAgent application.
         """
         print("Initializing ContentAgent...")
+        
+        # Initialize memory manager first
+        self.memory_manager = MemoryManager()
+        
         # Stage 1 components
         self.document_processor = DocumentProcessor()
         self.twitter_generator = TwitterThreadGenerator()
-        self.cli = CLIInterface()
+        self.cli = CLIInterface(memory_manager=self.memory_manager)
         
         # Stage 2 components
         self.article_summary_generator = ArticleSummaryGenerator()
@@ -124,7 +129,12 @@ class ContentAgent:
             
             # Get user feedback loop
             while True:
-                feedback_type, feedback_content = self.cli.get_user_feedback(thread_path)
+                feedback_type, feedback_content = self.cli.get_user_feedback(
+                    thread_path, 
+                    content_type="twitter_thread",
+                    content_text=thread_content,
+                    original_prompt=f"Generate Twitter thread from: {article_title}"
+                )
                 
                 if feedback_type == "accept":
                     # User accepted the thread, save it to output
@@ -142,10 +152,11 @@ class ContentAgent:
                     # User requested revision
                     print("Revising thread based on feedback...")
                     
-                    # Update the thread with revised content
-                    revised_thread = self.twitter_generator.generate_thread(
-                        article_content,
-                        feedback_content
+                    # Update the thread with revised content using the proper revision method
+                    revised_thread = self.twitter_generator.revise_thread(
+                        original_thread=thread_content,
+                        article_text=article_content,
+                        feedback=feedback_content
                     )
                     
                     # Save the revised thread
@@ -169,7 +180,12 @@ class ContentAgent:
             
             # Get user feedback loop for article summary
             while True:
-                feedback_type, feedback_content = self.cli.get_user_feedback(summary_path)
+                feedback_type, feedback_content = self.cli.get_user_feedback(
+                    summary_path,
+                    content_type="article_summary", 
+                    content_text=summary,
+                    original_prompt=f"Generate article summary for: {article_title}"
+                )
                 
                 if feedback_type == "accept":
                     # User accepted the summary
@@ -244,7 +260,12 @@ class ContentAgent:
                     
                     # Get user feedback for this post
                     print(f"\n{Fore.CYAN}Review the post for argument:{Style.RESET_ALL} {argument[:50]}...")
-                    feedback_type, feedback_content = self.cli.get_user_feedback(post_path)
+                    feedback_type, feedback_content = self.cli.get_user_feedback(
+                        post_path,
+                        content_type="detailed_post",
+                        content_text=post_content,
+                        original_prompt=f"Generate detailed post for argument: {argument[:50]}"
+                    )
                     
                     if feedback_type == "accept":
                         # User accepted the post

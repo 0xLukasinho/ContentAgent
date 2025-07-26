@@ -238,4 +238,96 @@ class TwitterThreadGenerator:
         """
         # Combine document content
         article_text = "\n\n".join([doc.page_content for doc in documents])
-        return self.generate_thread(article_text, custom_instructions) 
+        return self.generate_thread(article_text, custom_instructions)
+    
+    def revise_thread(
+        self,
+        original_thread: str,
+        article_text: str,
+        feedback: str,
+        custom_instructions: str = ""
+    ) -> str:
+        """
+        Revise a thread based on user feedback while preserving style guidelines.
+        
+        Args:
+            original_thread: The original generated thread
+            article_text: The original article content
+            feedback: User feedback for revision
+            custom_instructions: Any additional custom instructions
+            
+        Returns:
+            Revised thread as a string
+        """
+        logger.info("Revising thread based on feedback while preserving style")
+        
+        # Load writing instructions and samples (same as original generation)
+        style_instructions = self.load_writing_instructions()
+        sample_threads = self.load_thread_samples()
+        
+        # Combine feedback with custom instructions
+        revision_instructions = custom_instructions
+        if feedback:
+            revision_instructions = f"{custom_instructions}\n\nUser feedback for revision: {feedback}" if custom_instructions else f"User feedback for revision: {feedback}"
+        
+        # Create a revision-specific prompt that includes the original thread for context
+        revision_prompt_template = PromptTemplate(
+            input_variables=["article_text", "style_instructions", "sample_threads", "original_thread", "revision_instructions"],
+            template="""
+You are to revise a social media thread about the article below, based on user feedback.
+
+Your #1 goal is to emulate the style, formatting, and persona of the provided sample threads as closely as possible. Your #2 goal is to follow the writing instructions. Your #3 goal is to address the user's feedback.
+
+Analyze the sample threads and instructions internally, but ONLY output the revised thread itself—do NOT include any analysis or blueprint in your output.
+
+You may use up to 25 tweets if needed to fully cover the article. There is no need to hit 25, but do not artificially stop early. Be as exhaustive and detailed as the article and samples require.
+
+The revised thread must:
+- Closely match the sample's formatting (segment length, separators, line breaks, etc.)
+- Match the sample's voice and persona
+- Use the writing instructions as secondary rules
+- Address the user's feedback and concerns
+- Avoid generic, formulaic, or AI-style output
+- Only use hook styles (like 'Unpopular take:') if they are genuinely contextually appropriate for the content
+
+SAMPLES:
+{sample_threads}
+
+INSTRUCTIONS:
+{style_instructions}
+
+ORIGINAL THREAD:
+{original_thread}
+
+REVISION INSTRUCTIONS:
+{revision_instructions}
+
+ARTICLE:
+{article_text}
+
+REVISED THREAD:
+(Write the revised thread, following the style guidelines while addressing the feedback)
+"""
+        )
+        
+        # Create a revision-specific chain
+        revision_chain = (
+            {
+                "article_text": RunnablePassthrough(),
+                "style_instructions": RunnablePassthrough(),
+                "sample_threads": RunnablePassthrough(),
+                "original_thread": RunnablePassthrough(),
+                "revision_instructions": RunnablePassthrough()
+            }
+            | revision_prompt_template
+            | self.llm
+            | StrOutputParser()
+        )
+        
+        return revision_chain.invoke({
+            "article_text": article_text,
+            "style_instructions": style_instructions,
+            "sample_threads": sample_threads,
+            "original_thread": original_thread,
+            "revision_instructions": revision_instructions
+        }) 

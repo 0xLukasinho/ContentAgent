@@ -10,6 +10,7 @@ import tempfile
 import subprocess
 import colorama
 from colorama import Fore, Style
+import time
 
 # Import from centralized config
 from src.config import INPUT_DIR, OUTPUT_DIR, VALID_EXTENSIONS
@@ -23,16 +24,18 @@ class CLIInterface:
     Handles user interaction and feedback.
     """
     
-    def __init__(self, output_dir: str = OUTPUT_DIR, input_dir: str = INPUT_DIR):
+    def __init__(self, output_dir: str = OUTPUT_DIR, input_dir: str = INPUT_DIR, memory_manager=None):
         """
         Initialize the CLI interface.
         
         Args:
             output_dir: Directory for output files
             input_dir: Directory for input files
+            memory_manager: MemoryManager instance for feedback recording
         """
         self.output_dir = output_dir
         self.input_dir = input_dir
+        self.memory_manager = memory_manager
         
         # Create directories if they don't exist
         os.makedirs(output_dir, exist_ok=True)
@@ -169,12 +172,18 @@ class CLIInterface:
         
         return response.lower() == "y"
     
-    def get_user_feedback(self, thread_path: str) -> tuple:
+    def get_user_feedback(self, thread_path: str, content_type: str = "content", 
+                         content_text: str = "", original_prompt: str = "", 
+                         generation_time: float = None) -> tuple:
         """
         Get user feedback on generated content.
         
         Args:
             thread_path: Path to the file containing the generated content
+            content_type: Type of content generated (e.g., "twitter_thread", "article_summary")
+            content_text: The actual generated content text
+            original_prompt: The prompt used to generate the content
+            generation_time: Time taken to generate the content in seconds
             
         Returns:
             Tuple of (feedback_type, feedback_content)
@@ -192,18 +201,21 @@ class CLIInterface:
                 if not choice:
                     # Default to accept
                     print(f"{Fore.GREEN}Content accepted.{Style.RESET_ALL}")
+                    self._record_feedback("accept", content_type, content_text, original_prompt, generation_time)
                     return ("accept", "")
                     
                 option = int(choice)
                 if option == 1:
                     # Accept as is
                     print(f"{Fore.GREEN}Content accepted.{Style.RESET_ALL}")
+                    self._record_feedback("accept", content_type, content_text, original_prompt, generation_time)
                     return ("accept", "")
                 elif option == 2:
                     # Edit manually
                     print(f"{Fore.GREEN}Opening content for editing...{Style.RESET_ALL}")
                     self._open_file_in_editor(thread_path)
                     print(f"{Fore.GREEN}Manual edits applied.{Style.RESET_ALL}")
+                    self._record_feedback("edit", content_type, content_text, original_prompt, generation_time)
                     return ("edited", "")
                 elif option == 3:
                     # Request revision
@@ -211,6 +223,7 @@ class CLIInterface:
                     feedback = input("> ")
                     if feedback:
                         print(f"{Fore.GREEN}Feedback received. Generating revision...{Style.RESET_ALL}")
+                        self._record_feedback("reject", content_type, content_text, original_prompt, generation_time, {"revision_reason": feedback})
                         return ("revise", feedback)
                     else:
                         print(f"{Fore.RED}No feedback provided. Please try again.{Style.RESET_ALL}")
@@ -236,6 +249,34 @@ class CLIInterface:
                 subprocess.call(['xdg-open', file_path])
                 
         input(f"{Fore.YELLOW}Press Enter when you're done editing the file...{Style.RESET_ALL}")
+    
+    def _record_feedback(self, user_action: str, content_type: str, content_text: str, 
+                        original_prompt: str, generation_time: float, metadata: dict = None):
+        """
+        Record user feedback using the memory manager.
+        
+        Args:
+            user_action: The action taken by the user (accept, edit, reject)
+            content_type: Type of content generated
+            content_text: The actual generated content
+            original_prompt: The prompt used to generate content
+            generation_time: Time taken to generate in seconds
+            metadata: Additional metadata dictionary
+        """
+        if self.memory_manager:
+            try:
+                success = self.memory_manager.record_feedback(
+                    content_type=content_type,
+                    content_text=content_text,
+                    user_action=user_action,
+                    original_prompt=original_prompt,
+                    generation_time=generation_time,
+                    metadata=metadata
+                )
+                if not success:
+                    print(f"{Fore.YELLOW}Warning: Failed to record feedback in memory system.{Style.RESET_ALL}")
+            except Exception as e:
+                print(f"{Fore.YELLOW}Warning: Error recording feedback: {e}{Style.RESET_ALL}")
     
     def print_completion(self):
         """

@@ -99,6 +99,42 @@ Format your response with each post separated by triple hyphens (---), with the 
         self.detailed_post_chain = self.detailed_post_prompt | self.model
         self.post_batch_chain = self.post_batch_prompt | self.model
         
+        # Revision prompt for revising posts based on feedback
+        self.revision_prompt = ChatPromptTemplate.from_template("""
+You are to revise a detailed, substantive post based on user feedback while preserving the original style guidelines.
+
+Before writing, you must carefully analyze and internalize the provided writing instructions and sample posts. Your output must strictly follow ALL instructions and match the style, formatting, and voice demonstrated in the samples. Do not ignore, reinterpret, or generalize any instruction—treat deviation as an error.
+
+Do NOT include any analysis, blueprint, or explanation in your output—ONLY output the revised post itself.
+
+Be as exhaustive and detailed as the article requires. Do not leave out important points, context, or supporting information. Do not artificially shorten the post; cover all relevant nuances and details.
+
+SAMPLES:
+{sample_posts}
+
+INSTRUCTIONS:
+{style_instructions}
+
+ORIGINAL POST:
+{original_post}
+
+ARGUMENT:
+{argument}
+
+USER FEEDBACK:
+{feedback}
+
+MAIN ARTICLE CONTENT:
+{context}
+
+{additional_context_instructions}
+
+REVISED POST:
+(Write the revised post, following the instructions and samples exactly while addressing the feedback)
+""")
+        
+        self.revision_chain = self.revision_prompt | self.model
+        
     def load_writing_instructions(self) -> str:
         """
         Load writing instructions for detailed posts.

@@ -66,30 +66,31 @@ POST:
 """)
         
         self.revision_prompt = ChatPromptTemplate.from_template("""
-        You previously created a factual, objective summary of an article.
-        
-        {style_instructions}
-        
-        {sample_posts}
-        
-        Original summary:
-        {original_summary}
-        
-        Please revise the summary based on the following feedback:
-        {feedback}
-        
-        Remember, the summary should:
-        1. Begin with a concise overview of the article
-        2. Cover the main points and key details in a logical flow
-        3. Use clear, straightforward language
-        4. Be factual and objective - only include information from the article
-        5. Be well-structured with clear paragraphs for readability
-        6. Do NOT use any markdown formatting (no headings, bullet points, etc.)
-        7. Do NOT use hashtags or emojis
-        8. Keep the summary to approximately 400-600 words
-        
-        Article:
-        {content}
+You are to revise a detailed, substantive post based on user feedback while preserving the original style guidelines.
+
+Before writing, you must carefully analyze and internalize the provided writing instructions and sample posts. Your output must strictly follow ALL instructions and match the style, formatting, and voice demonstrated in the samples. Do not ignore, reinterpret, or generalize any instruction—treat deviation as an error.
+
+Do NOT include any analysis, blueprint, or explanation in your output—ONLY output the revised post itself.
+
+Be as exhaustive and detailed as the article requires. Do not leave out important points, context, or supporting information. Do not artificially shorten the post; cover all relevant nuances and details.
+
+SAMPLES:
+{sample_posts}
+
+INSTRUCTIONS:
+{style_instructions}
+
+ORIGINAL POST:
+{original_summary}
+
+USER FEEDBACK:
+{feedback}
+
+ARTICLE:
+{content}
+
+REVISED POST:
+(Write the revised post, following the instructions and samples exactly while addressing the feedback)
         """)
         
         self.summary_chain = self.summary_prompt | self.model

@@ -53,13 +53,35 @@ OPENAI_MODEL = DEFAULT_OPENAI_MODEL  # Export as the standard model name
 INPUT_DIR = os.path.join("data", "input")
 OUTPUT_DIR = os.path.join("data", "output")
 SAMPLES_DIR = os.path.join("data", "samples")
+MEMORY_DIR = os.path.join("data", "memory")
 
 # Valid file extensions for articles
 VALID_EXTENSIONS = [".txt", ".md", ".docx", ".pdf"]
 
+# Memory system settings
+MEMORY_DATABASE_PATH = os.path.join(MEMORY_DIR, "content_agent_memory.db")
+MEMORY_MAX_RECORDS = 2000
+MEMORY_ENABLED = True
+
 # Create required directories
-for directory in [INPUT_DIR, OUTPUT_DIR, SAMPLES_DIR]:
+for directory in [INPUT_DIR, OUTPUT_DIR, SAMPLES_DIR, MEMORY_DIR]:
     os.makedirs(directory, exist_ok=True)
+
+class Config:
+    """Configuration class for ContentAgent."""
+    
+    def __init__(self):
+        self.openai_api_key = OPENAI_API_KEY
+        self.openai_model = OPENAI_MODEL
+        self.data_dir = "data"
+        self.input_dir = INPUT_DIR
+        self.output_dir = OUTPUT_DIR
+        self.samples_dir = SAMPLES_DIR
+        self.memory_dir = MEMORY_DIR
+        self.memory_database_path = MEMORY_DATABASE_PATH
+        self.memory_max_records = MEMORY_MAX_RECORDS
+        self.memory_enabled = MEMORY_ENABLED
+        self.valid_extensions = VALID_EXTENSIONS
 
 def get_api_key(key_name: str) -> str:
     """

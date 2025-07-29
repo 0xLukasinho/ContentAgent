@@ -63,7 +63,8 @@ class TwitterThreadGenerator:
         system_prompt: Optional[str] = None,
         thread_prompt: Optional[str] = None,
         model_name: str = OPENAI_MODEL,
-        samples_dir: str = "data/samples"
+        samples_dir: str = "data/samples",
+        memory_manager=None
     ): 
         """
         Initialize the thread generator.
@@ -77,6 +78,7 @@ class TwitterThreadGenerator:
         # Set samples directories
         self.samples_dir = samples_dir
         self.thread_samples_dir = os.path.join(samples_dir, "sample_threads")
+        self.memory_manager = memory_manager
         
         # Create sample directories if they don't exist
         os.makedirs(self.thread_samples_dir, exist_ok=True)
@@ -196,6 +198,12 @@ class TwitterThreadGenerator:
         if custom_instructions:
             style_instructions = f"{style_instructions}\n\nAdditional instructions: {custom_instructions}"
         
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("twitter_thread")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
+        
         return self.chain.invoke(
             {
                 "article_text": article_text, 
@@ -269,6 +277,12 @@ class TwitterThreadGenerator:
         revision_instructions = custom_instructions
         if feedback:
             revision_instructions = f"{custom_instructions}\n\nUser feedback for revision: {feedback}" if custom_instructions else f"User feedback for revision: {feedback}"
+        
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("twitter_thread")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
         
         # Create a revision-specific prompt that includes the original thread for context
         revision_prompt_template = PromptTemplate(

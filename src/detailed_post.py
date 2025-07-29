@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class DetailedPostGenerator:
     """Generates substantive, long-form social media posts from key arguments."""
     
-    def __init__(self, samples_dir: str = "data/samples"):
+    def __init__(self, samples_dir: str = "data/samples", memory_manager=None):
         """
         Initialize the detailed post generator.
         
@@ -32,6 +32,7 @@ class DetailedPostGenerator:
         # Set samples directories
         self.samples_dir = samples_dir
         self.post_samples_dir = os.path.join(samples_dir, "sample_posts")
+        self.memory_manager = memory_manager
         
         # Create sample directories if they don't exist
         os.makedirs(self.post_samples_dir, exist_ok=True)
@@ -272,6 +273,13 @@ REVISED POST:
         sample_posts = self.load_post_samples()
         if custom_instructions:
             style_instructions = f"{style_instructions}\n\nAdditional instructions: {custom_instructions}"
+        
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("detailed_post")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
+        
         additional_context_instructions = self._prepare_additional_context_instructions(additional_context)
         try:
             result = self.detailed_post_chain.invoke({
@@ -421,6 +429,13 @@ REVISED POST:
         sample_posts = self.load_post_samples(max_samples=1)
         if custom_instructions:
             style_instructions = f"{style_instructions}\n\nAdditional instructions: {custom_instructions}"
+        
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("detailed_post")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
+        
         additional_context_instructions = self._prepare_additional_context_instructions(additional_context)
         try:
             result = self.revision_chain.invoke({

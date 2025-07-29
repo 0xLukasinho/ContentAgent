@@ -215,7 +215,16 @@ class CLIInterface:
                     print(f"{Fore.GREEN}Opening content for editing...{Style.RESET_ALL}")
                     self._open_file_in_editor(thread_path)
                     print(f"{Fore.GREEN}Manual edits applied.{Style.RESET_ALL}")
-                    self._record_feedback("edit", content_type, content_text, original_prompt, generation_time)
+                    
+                    # Read the edited content to track changes
+                    try:
+                        with open(thread_path, "r", encoding="utf-8") as f:
+                            edited_content = f.read()
+                        edit_metadata = {"edited_content": edited_content}
+                    except Exception:
+                        edit_metadata = {}
+                    
+                    self._record_feedback("edit", content_type, content_text, original_prompt, generation_time, edit_metadata)
                     return ("edited", "")
                 elif option == 3:
                     # Request revision

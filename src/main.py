@@ -39,13 +39,13 @@ class ContentAgent:
         
         # Stage 1 components
         self.document_processor = DocumentProcessor()
-        self.twitter_generator = TwitterThreadGenerator()
+        self.twitter_generator = TwitterThreadGenerator(memory_manager=self.memory_manager)
         self.cli = CLIInterface(memory_manager=self.memory_manager)
         
         # Stage 2 components
-        self.article_summary_generator = ArticleSummaryGenerator()
+        self.article_summary_generator = ArticleSummaryGenerator(memory_manager=self.memory_manager)
         self.key_findings_extractor = KeyFindingsExtractor()
-        self.detailed_post_generator = DetailedPostGenerator()
+        self.detailed_post_generator = DetailedPostGenerator(memory_manager=self.memory_manager)
         self.image_prompt_generator = ImagePromptGenerator()
         self.content_formatter = ContentFormatter()
         self.context_processor = ContextProcessor()

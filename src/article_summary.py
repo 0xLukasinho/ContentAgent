@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class ArticleSummaryGenerator:
     """Generates factual, objective summaries of articles."""
     
-    def __init__(self, samples_dir: str = "data/samples"):
+    def __init__(self, samples_dir: str = "data/samples", memory_manager=None):
         """
         Initialize the article summary generator.
         
@@ -32,6 +32,7 @@ class ArticleSummaryGenerator:
         # Set samples directories
         self.samples_dir = samples_dir
         self.post_samples_dir = os.path.join(samples_dir, "sample_posts")
+        self.memory_manager = memory_manager
         
         # Create sample directories if they don't exist
         os.makedirs(self.post_samples_dir, exist_ok=True)
@@ -184,6 +185,12 @@ REVISED POST:
         if custom_instructions:
             style_instructions = f"{style_instructions}\n\nAdditional instructions: {custom_instructions}"
         
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("article_summary")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
+        
         try:
             result = self.summary_chain.invoke({
                 "content": content,
@@ -217,6 +224,12 @@ REVISED POST:
         # Add any custom instructions
         if custom_instructions:
             style_instructions = f"{style_instructions}\n\nAdditional instructions: {custom_instructions}"
+        
+        # Add memory-based enhancements if available
+        if self.memory_manager:
+            memory_enhancements = self.memory_manager.get_prompt_enhancements("article_summary")
+            if memory_enhancements:
+                style_instructions = f"{style_instructions}{memory_enhancements}"
         
         try:
             result = self.revision_chain.invoke({

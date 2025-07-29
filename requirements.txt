@@ -15,3 +15,4 @@ markdown>=3.5.1
 # Text analysis and summarization
 nltk>=3.8.1
 spacy>=3.7.2
+textstat>=0.7.0
